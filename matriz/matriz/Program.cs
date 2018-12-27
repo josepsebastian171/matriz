@@ -65,15 +65,101 @@ namespace matriz
 
     public static void leerMatriz(int [,] matriz, int fila, int columna)
     {
+        double promcolpar = 0;
+        int cantcolpar = 0;
+        int sumacolpar = 0;
+        int totalsumacolpar = 0;
+        int sumacol = 0;
+        int cantcolmayor = 0;
+
         if (matriz != null)
         {
+
+            Console.WriteLine("\n\nLectura de la matriz por filas");
+
             for (int fil = 0; fil <= fila - 1; fil++)
             {
                 for (int col = 0; col <= columna - 1; col++)
                 {
-
+                    Console.WriteLine("\n");
+                    Console.WriteLine("fila " + fil + ": " + matriz[fil, col]);
                 }
             }
+
+            if (columna == 1)
+            {
+                cantcolpar = 0;
+            }
+            else
+            {
+                if ((columna % 2) == 0)
+                {
+                    cantcolpar = columna / 2;
+                }
+                else
+                {
+                    cantcolpar = (columna - 1) / 2;
+                }
+            }
+
+            for (int col = 0; col <= columna - 1; col++)
+            {
+                for (int fil = 0; fil <= fila - 1; fil++)
+                {
+                     sumacolpar = 0;
+
+                    if (col > 0)
+                    {
+                        if (col == 1)
+                        {
+                            sumacolpar += matriz[fil, col];
+                        }
+                        else if(((col+1) % 2) == 0)
+                        {
+                            sumacolpar += matriz[fil, col];
+                        }
+                       
+                    }
+
+                }
+                totalsumacolpar += sumacolpar;
+            }
+
+            
+
+            if(cantcolpar > 0)
+            {
+                promcolpar = (double)totalsumacolpar / (double)cantcolpar;
+            }
+
+            Console.WriteLine("\nEl total de la suma de las columnas pares es: " + totalsumacolpar);
+
+            Console.WriteLine("\nCantidad de columnas pares es: " + cantcolpar);
+
+            Console.WriteLine("\nEl promedio de columnas pares es: " + promcolpar);
+
+            for (int col = 0; col <= columna - 1; col++)
+            {
+                sumacol = 0;
+
+                for (int fil = 0; fil <= fila - 1; fila++)
+                {
+                    sumacol += matriz[fil, col];
+                }
+
+                if(sumacol > promcolpar)
+                {
+                     cantcolmayor++;
+                }
+            }
+
+           
+
+            Console.WriteLine("\nLa cantidad de columnas cuya suma es mayor al promedio de columnas pares es: " + cantcolmayor);
+
+            Console.ReadKey();
+
+            
         }
         else
         {
